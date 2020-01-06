@@ -1,92 +1,132 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <div>
+    <v-container fluid>
+      <v-row justify="center">
+        <v-col cols="10">
+          <v-toolbar>
+            <v-toolbar-title class="headline font-weight-medium">
+              Welcome to the Homepage
+            </v-toolbar-title>
+          </v-toolbar>
+          <v-divider class="pa-1" dark/>
+          <v-card>
+            <v-card-text>
+              <div class="body-1">
+                This project was created as a playground to help learn the different pieces we are using to develop a UI. As you can see I have created two tabs above, one with your name and one with my name.
+                When clicked they will take you to the respective persons page, which right now are currently empty, however they are meant to be a sandbox to learn and put whatever you want on the page. 
+              </div>
+              <br>
+              <div class="body-1">
+                On this page (as well as in the README) I will include several links to resources that I use for development as a whole, as well as some specific to the frameworks we are using for this UI. Click on a tile to see their page:
+              </div>
+              <v-row justify="space-around">
+                <v-col cols="5">
+                  <v-list two-line>
+                    <v-subtitle class="subtitle grey--text font-weight-light">Resources For Everyday Programming</v-subtitle>
+                    <v-list-item-group v-for="(source, idx) in common_resources" :key="idx">
+                      <v-list-item :href="source.link" target="_" id="resourceitem">
+                        <v-list-item-content>
+                          <v-list-item-title>{{source.title}}</v-list-item-title>
+                          <v-list-item-subtitle>{{source.description}}</v-list-item-subtitle>
+                        </v-list-item-content>
+                        <v-list-item-action>
+                          <v-icon>exit_to_app</v-icon>
+                        </v-list-item-action>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                </v-col>
+                <v-col cols="5">
+                  <v-list two-line>
+                    <v-subtitle class="subtitle grey--text font-weight-light">Resources Specific to This Project</v-subtitle>
+                    <v-list-item-group v-for="(source, idx) in project_resources" :key="idx" :href="source.link" target="_">
+                      <v-list-item :href="source.link" target="_" id="resourceitem">
+                        <v-list-item-content>
+                          <v-list-item-title>{{source.title}}</v-list-item-title>
+                          <v-list-item-subtitle>{{source.description}}</v-list-item-subtitle>
+                        </v-list-item-content>
+                        <v-list-item-action>
+                          <v-icon>exit_to_app</v-icon>
+                        </v-list-item-action>
+                      </v-list-item>
+                    </v-list-item-group>
+                  </v-list>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  }
+  components: {},
+  data: () => ({
+    common_resources: [
+      {
+        title: "VS Code",
+        link: "https://code.visualstudio.com/",
+        description: "OP Text Editor"
+      },
+      {
+        title: "Cmder",
+        link: "https://cmder.net/",
+        description: "CMD/Terminal Emulator"
+      },
+      {
+        title: "WSL Ubuntu",
+        link: "https://docs.microsoft.com/en-us/windows/wsl/install-win10",
+        description: "Ubuntu Filesystem on Windows w/o Dualbooting"
+      },
+      {
+        title: "DataGrip",
+        link: "https://www.jetbrains.com/datagrip/",
+        description: "Fullscale Database IDE"
+      },
+      {
+        title: "SourceTree",
+        link: "https://www.sourcetreeapp.com/",
+        description: "Git UI"
+      },
+    ],
+    project_resources: [
+      {
+        title: "Nuxt.js",
+        link: "https://nuxtjs.org/",
+        description: "Backend/Server Framework"
+      },
+      {
+        title: "Vue.js",
+        link: "https://vuejs.org",
+        description: "Frontend Framework"
+      },
+      {
+        title: "Vuetify.js",
+        link: "https://vuetify.js.com/en/",
+        description: "UI Component Framework"
+      },
+      {
+        title: "Axios",
+        link: "https://axios.nuxtjs.org/",
+        description: "Javascript API Library"
+      },
+      {
+        title: "JavaScript",
+        link: "https://www.w3schools.com/js/",
+        description: "References for JavaScript Language"
+      },
+    ]
+  })
 }
 </script>
+
+<style scoped>
+#resourceitem:hover {
+  background-color: rgba(60, 60, 130, .5);
+}
+
+</style>
